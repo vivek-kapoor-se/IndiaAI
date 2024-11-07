@@ -7,23 +7,23 @@ Original file is located at
     https://colab.research.google.com/drive/1ykSZzTlWpcHc0LTHavSEbTbASqVtlzzw
 """
 
-# import torch
+import torch
 
-# # Check if MPS is available (for Apple Silicon)
-# mps_available = torch.backends.mps.is_available()
-# print("Is MPS available:", mps_available)
+# Check if MPS is available (for Apple Silicon)
+mps_available = torch.backends.mps.is_available()
+print("Is MPS available:", mps_available)
 
-# # Check if CUDA is available (for NVIDIA GPUs, not relevant here)
-# cuda_available = torch.cuda.is_available()
-# print("Is CUDA available:", cuda_available)
+# Check if CUDA is available (for NVIDIA GPUs, not relevant here)
+cuda_available = torch.cuda.is_available()
+print("Is CUDA available:", cuda_available)
 
-# # Print device info
-# if mps_available:
-#     print("Using MPS (Apple Silicon) for GPU acceleration.")
-# elif cuda_available:
-#     print("Using CUDA for NVIDIA GPU.")
-# else:
-#     print("No GPU detected.")
+# Print device info
+if mps_available:
+    print("Using MPS (Apple Silicon) for GPU acceleration.")
+elif cuda_available:
+    print("Using CUDA for NVIDIA GPU.")
+else:
+    print("No GPU detected.")
 
 
 import spacy
@@ -93,44 +93,9 @@ for epoch in range(n_epochs):
 # Assuming 'nlp' is your trained spaCy model
 nlp.to_disk("nlp_model_2")
 
-# nlp = spacy.load("nlp_model")
+nlp = spacy.load("nlp_model_2")
 
 print(nlp.get_pipe("textcatl").labels)
-
-## Evaluation
-#correct = 0
-#total = len(test_spacy_data)
-#
-#for text, annotations in test_spacy_data:
-#    if not isinstance(text, str):
-#        continue
-#    doc = nlp(text)
-#    cats_pred = doc.cats
-#    cats_true = annotations["cats"]
-#
-#    # Initialize a flag for tracking if the prediction matches
-#    match = True
-#
-#    # Check if predicted categories match the actual categories
-#    for label in cats_true:
-#        # Check if the label exists in predicted categories
-#        if label in cats_pred:
-#            # Compare predicted and true values
-#            if (cats_pred[label] >= 0.99) != cats_true[label]:
-#                match = False
-#                break  # Exit loop if there's a mismatch
-#        else:
-#            print(f"Warning: Category '{label}' not found in predicted categories.")
-#
-#    # Increment correct count if match is True
-#    if match:
-#        correct += 1
-#
-#
-#accuracy = correct / total
-#print(f"Accuracy: {accuracy * 100:.2f}%")
-
-
 
 # Step 3: Initialize counters for evaluation
 correct_predictions = 0
