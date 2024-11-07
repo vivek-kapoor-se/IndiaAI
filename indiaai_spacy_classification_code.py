@@ -101,43 +101,6 @@ print(nlp.get_pipe("textcatl").labels)
 correct_predictions = 0
 total_predictions = len(test_spacy_data)
 
-## Step 4: Run predictions and evaluate
-#for text, annotations in test_spacy_data:
-#    if not isinstance(text, str):
-#        continue
-#    doc = nlp(text)  # Process the text with the model
-#    print('doc: ', doc)
-#    cats_pred = doc.cats  # Get predicted categories
-#    print('doc.cats: ', doc.cats)
-#    cats_true = annotations["cats"]  # Get true categories
-#    print('cats_true: ', cats_true)
-#
-#    # Initialize a flag for tracking if the prediction matches
-#    match = True
-#
-#    # Check predictions for each category
-#    for label in cats_true:
-#        # Ensure the label exists in predicted categories
-#        if label in cats_pred:
-#            predicted = 1 if cats_pred[label] >= 0.5 else 0  # Binary threshold
-#            true = cats_true[label]
-#            
-#            # Check if predicted matches true
-#            if predicted == true:
-#                correct_predictions += 1
-#        else:
-#            print(f"Warning: Category '{label}' not found in predicted categories.")
-#
-## Step 5: Calculate and print the matching percentage
-#if total_predictions > 0:
-#    matching_percentage = (correct_predictions / total_predictions) * 100
-#else:
-#    matching_percentage = 0
-#
-#print(f"Correct Predictions: {correct_predictions} out of {total_predictions}")
-#print(f"Matching Percentage: {matching_percentage:.2f}%")
-
-
 # Step 4: Run predictions and evaluate
 for text, annotations in test_spacy_data:
     if not isinstance(text, str):
