@@ -67,7 +67,7 @@ optimizer = nlp.initialize()
 # spacy.require_gpu()
 
 ## Training loop
-n_epochs = 1
+n_epochs = 100
 
 for epoch in range(n_epochs):
    print(f"Starting epoch {epoch + 1}")
